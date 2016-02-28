@@ -8,3 +8,10 @@ see documentation:
 http://www.axel-hahn.de/docs/anclock/index.htm
 and the code generator
 http://www.axel-hahn.de/docs/anclock/code_generator.htm
+
+sources: 
+  git: 
+  https://github.com/axelhahn/anclock.git
+
+  svn: 
+  svn://svn.code.sf.net/p/anclock/code/trunk

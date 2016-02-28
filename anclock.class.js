@@ -577,10 +577,6 @@ var Anclock=function (sDivname, aOptions){
     // ------------------------------------------------------------
     // init
     // ------------------------------------------------------------
-    if (arguments) {
-        sDivname=arguments[0];
-        aOptions=arguments[1];
-    }
     if (!sDivname){
         return false;
     }
