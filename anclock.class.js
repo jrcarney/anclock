@@ -35,6 +35,16 @@
  *                              see a description of the option array
  * @return none
  */
+
+ /**
+  * JC todo:
+        1) use the original options supplied at instantiation (reverts back to defualts
+            when clock is stopped)
+        2) enable the class to recognise the public startClock and stopClock methods 
+            at instantiation
+
+    see http://www.jsclasses.org/package/509-JavaScript-Display-time-on-an-analog-clock-in-a-Web-page.html
+  */
 var Anclock=function (sDivname, aOptions){
 
     // class variables
@@ -183,8 +193,7 @@ var Anclock=function (sDivname, aOptions){
         // apply new values
         this._drawHtml();
         this._applyOptions();
-        this.refresh();
-        
+        this.refresh();        
         return true;
     };
 
@@ -394,6 +403,24 @@ var Anclock=function (sDivname, aOptions){
     };
 
     /**
+     * @public
+     * JC: extend class
+        stop the timer if its running
+     * @param: the stopbutton the event listner is bound to
+     */
+    this.stopClock = function(clock) {
+        //return this._timer=false;
+        self = this;
+
+        var el = document.getElementById(clock);
+        el.addEventListener("click", function(e) {
+                //clock;
+                //clock.stopClock();
+                return self._timer=false;
+            }, false);        
+    };
+
+    /**
      * @private
      * draw initial html code for the clock into the div this._oClockDiv
      */
@@ -550,6 +577,24 @@ var Anclock=function (sDivname, aOptions){
                 aElem[i].innerHTML=sHtml;
             }
         }
+    };
+
+    /**
+     * @public
+     * JC: extend class
+        restart the timer if its stopped
+     * @param: the startbuton the event listner is bound to
+     */
+    this.startClock = function(clock) {
+        self = this;
+
+        var el = document.getElementById(clock);
+        el.addEventListener("click", function() {
+               self._onTimer(self._timer = true);
+               return true;
+            }
+
+        );
     };
 
     /**
