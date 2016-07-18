@@ -1,9 +1,12 @@
+
 var options = {
 	width: '500px',
 	height: '500px',
 	iAnimate: 0,
 	stopClockEl: "stopclock",
-	startClockEl: "startclock"
+	startClockEl: "startclock",
+	skins: window.valutBoySkin
+
 };
 
 var clock = new Anclock("myclock", options);
