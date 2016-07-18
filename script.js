@@ -1,7 +1,9 @@
 var options = {
 	width: '500px',
 	height: '500px',
-	iAnimate: 1
+	iAnimate: 0,
+	stopClockEl: "stopclock",
+	startClockEl: "startclock"
 };
 
 var clock = new Anclock("myclock", options);
@@ -13,7 +15,7 @@ el.addEventListener("click", function(e) {
         clock.stopClock();
     }, false);*/
 
-clock.stopClock("stopclock");
-clock.startClock("startclock");
+//clock.stopClock("stopclock");
+//clock.startClock("startclock");
 
 

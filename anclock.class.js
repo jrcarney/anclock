@@ -38,9 +38,7 @@
 
  /**
   * JC todo:
-        1) use the original options supplied at instantiation (reverts back to defualts
-            when clock is stopped)
-        2) enable the class to recognise the public startClock and stopClock methods 
+        * enable the class to recognise the public startClock and stopClock methods 
             at instantiation
 
     see http://www.jsclasses.org/package/509-JavaScript-Display-time-on-an-analog-clock-in-a-Web-page.html
@@ -57,8 +55,11 @@ var Anclock=function (sDivname, aOptions){
     // options that a user can influence
     this.options={
         
-        width: '150px',           // size of the clock
+        width: '150px',         // size of the clock
         height: '150px',
+
+        stopClockEl: false,     // by default dont add stop button
+        startClockEl: false,    // by default dont add start button
         
         iAnimate: 0,            // duration for animation of clock hands [s]
         bStopped: false,        // set true to freeze the shown time
@@ -188,6 +189,14 @@ var Anclock=function (sDivname, aOptions){
                 }
             }
             */
+
+            console.log(aOptions);
+            if(aOptions.stopClockEl && aOptions.startClockEl) {
+                console.log(this);
+                this._stopClock(aOptions.stopClockEl);
+                this._startClock(aOptions.startClockEl);
+
+            } 
         }
 
         // apply new values
@@ -403,12 +412,11 @@ var Anclock=function (sDivname, aOptions){
     };
 
     /**
-     * @public
-     * JC: extend class
-        stop the timer if its running
-     * @param: the stopbutton the event listner is bound to
+     * @private
+     * Stop the clock when the stop button is clicked
+     * @param {string} the element the event listner is bound to
      */
-    this.stopClock = function(clock) {
+    this._stopClock = function(clock) {
         //return this._timer=false;
         self = this;
 
@@ -580,12 +588,11 @@ var Anclock=function (sDivname, aOptions){
     };
 
     /**
-     * @public
-     * JC: extend class
-        restart the timer if its stopped
-     * @param: the startbuton the event listner is bound to
+     * @private
+     * Start the clock when the start button is clicked
+     * @param {string} the element the event listener is bound to
      */
-    this.startClock = function(clock) {
+    this._startClock = function(clock) {
         self = this;
 
         var el = document.getElementById(clock);
@@ -631,8 +638,12 @@ var Anclock=function (sDivname, aOptions){
         return false;
     }
 
+
+
     this._drawHtml(); // draw initial html code
     this._onTimer();   // start timer function
+    //this._startClock();   // bind elemtn
+    //this._stopClock();   // start timer function
     if (!aOptions) {
         this.setOptions({
             skin: this.options["skin"]
