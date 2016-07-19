@@ -244,12 +244,6 @@ var Anclock=function (sDivname, aOptions){
         return sReturn;
     };
 
- /*   this.getNyTimeZone = function() {
-        self = this;
-        var normalTime = self.getTimeAsString();
-        console.log(normalTime);
-    };*/
-
     /**
      * get current options; see setOptions() for details to the options array
      * @return {array} aOptions
