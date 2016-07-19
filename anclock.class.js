@@ -38,10 +38,7 @@
 
  /**
   * JC todo:
-        * Allow user to change timezone
-            - Add the country name under the clock
-
-        * 
+        * Bind stop/start buttons to different clocks if more than 1 is instantiated
 
     see http://www.jsclasses.org/package/509-JavaScript-Display-time-on-an-analog-clock-in-a-Web-page.html
   */
@@ -234,6 +231,7 @@ var Anclock=function (sDivname, aOptions){
         if (!this._date) return false;
 
         var hours = this._date.getHours();
+
         var minutes = this._date.getMinutes();
         if (hours<10){
             sReturn+='0';
@@ -245,6 +243,12 @@ var Anclock=function (sDivname, aOptions){
         sReturn+=minutes;
         return sReturn;
     };
+
+ /*   this.getNyTimeZone = function() {
+        self = this;
+        var normalTime = self.getTimeAsString();
+        console.log(normalTime);
+    };*/
 
     /**
      * get current options; see setOptions() for details to the options array
@@ -521,6 +525,13 @@ var Anclock=function (sDivname, aOptions){
     this.refresh = function(){
 
         var hours = this._date.getHours();
+
+        // Check if a country has been passed in
+        if(aOptions.tz) {
+            hours = this.cTimeZone(hours);
+            console.log(hours);
+        }
+
         var minutes = this._date.getMinutes();
         var sec = this._date.getSeconds();
 
@@ -587,6 +598,23 @@ var Anclock=function (sDivname, aOptions){
             if (sHtml) {
                 aElem[i].innerHTML=sHtml;
             }
+        }
+    };
+
+    /**
+     * change timezone based on parameter passed in
+     */
+    this.cTimeZone = function(hours) {
+        var c = aOptions.tz,
+            c = c.toLowerCase();
+        switch(c) {
+            case("new york"):
+                return hours - 5;
+            case("paris"):
+                return hours + 1;
+            case("dubai"):
+                return hours + 4;
+            break;
         }
     };
 

@@ -6,10 +6,12 @@ var options = {
 	stopClockEl: "stopclock",
 	startClockEl: "startclock",
 	skins: valutBoySkin
-
 };
 
 var clock = new Anclock("myclock", options);
+
+
+//clock.getNyTimeZone();
 
 /* working code */
 /*var el = document.getElementById("stopclock");
