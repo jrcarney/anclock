@@ -38,8 +38,10 @@
 
  /**
   * JC todo:
-        * enable the class to recognise the public startClock and stopClock methods 
-            at instantiation
+        * Allow user to change timezone
+            - Add the country name under the clock
+
+        * 
 
     see http://www.jsclasses.org/package/509-JavaScript-Display-time-on-an-analog-clock-in-a-Web-page.html
   */
@@ -135,6 +137,9 @@ var Anclock=function (sDivname, aOptions){
      * oClock.setOptions={
      *         width: false,           // size of the clock
      *         height: false,
+     *
+     *         stopClockEl: false,     // by default dont add stop button
+     *         startClockEl: false,    // by default dont add start button
      * 
      *         iAnimate: 0,            // duration for animation of clock hands [s]
      *         bStopped: false,        // set true to keep the shown time
@@ -417,7 +422,6 @@ var Anclock=function (sDivname, aOptions){
      * @param {string} the element the event listner is bound to
      */
     this._stopClock = function(clock) {
-        //return this._timer=false;
         self = this;
 
         var el = document.getElementById(clock);
@@ -433,7 +437,6 @@ var Anclock=function (sDivname, aOptions){
      * draw initial html code for the clock into the div this._oClockDiv
      */
     this._drawHtml = function () {
-
         var myId=this._oClockDiv.id;
         var aSkin=this.getSkin();
         var aStyles=aSkin["styles"];

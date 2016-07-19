@@ -5,7 +5,7 @@ var options = {
 	iAnimate: 0,
 	stopClockEl: "stopclock",
 	startClockEl: "startclock",
-	skins: window.valutBoySkin
+	skins: valutBoySkin
 
 };
 
